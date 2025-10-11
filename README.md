@@ -36,6 +36,14 @@ Download the `.unitypackage` file and import it into Unity.
 
 ![image](https://github.com/user-attachments/assets/97a7d06c-8be0-492e-9e06-3222ba58deaa)
 
+## First Of All
+
+```cs
+[IUtil.IUtilable]
+public class MyClass : MonoBehaviour { /* ... */ }
+```
+To avoid conflicts with other libraries, classes that use `TabGroup`, `FoldoutGroup`, or `Button` must have the `[IUtilable]` attribute.
+
 
 ### Tab / Foldout Group
 
