@@ -34,15 +34,17 @@ namespace IUtil.ProjectWindow
 	            .ToDictionary(kv => kv.Key, kv => kv.Value);
 
 			configSO.Elements = ConfigDict.Values.ToList();
-        }
 
+			EditorUtility.SetDirty(configSO);
+			AssetDatabase.SaveAssets();
+			AssetDatabase.Refresh();
+		}
         public static void LoadAll()
         {
 			RefreshConfigs();
             LoadFolderColorTextures();
             LoadIconTextures();
         }
-
 
         private static void RefreshConfigs()
         {
@@ -101,7 +103,7 @@ namespace IUtil.ProjectWindow
         }
 
         /// <summary>
-        /// Save path info in Scritable Object,
+        /// Save path info in Scriptable Object,
         ///     and Re-Load all.
         /// </summary>
         public static void SetCustomFolderConfig<T>(string path, int idx) where T : Enum
@@ -111,42 +113,40 @@ namespace IUtil.ProjectWindow
             if (typeof(T) == typeof(FolderColorType)) ConfigDict[path].ColorType = (FolderColorType)idx;
 
             SaveAll();
-
-			EditorUtility.SetDirty(configSO);
-			AssetDatabase.SaveAssets();
-			AssetDatabase.Refresh();
             LoadAll();
 		}
 
+        /// <summary>
+        /// Save folder color in Scriptable Object,
+        ///     and Re-Load all.
+        /// </summary>
         public static void SetCustomFolderColor(string path, Color color)
         {
             if (!ConfigDict.ContainsKey(path)) ConfigDict[path] = new FolderConfigElement(path);
             ConfigDict[path].CustomFolderColor = color;
 
             SaveAll();
-
-            EditorUtility.SetDirty(configSO);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
             LoadAll();
         }
+
+        /// <summary>
+        /// Get FolderConfigElement by folder path
+        /// </summary>
         public static FolderConfigElement GetFolderConfigElement(string path)
         {
             if (!ConfigDict.ContainsKey(path)) return null;
             return ConfigDict[path];
         }
 
+        /// <summary>
+        /// Remove folder config element by folder path
+        /// </summary>
         public static void ResetCustom(string path)
         {
             if (!ConfigDict.ContainsKey(path)) return;
-
             ConfigDict.Remove(path);
 
 			SaveAll();
-
-			EditorUtility.SetDirty(configSO);
-			AssetDatabase.SaveAssets();
-			AssetDatabase.Refresh();
 			LoadAll();
 		}
 	}

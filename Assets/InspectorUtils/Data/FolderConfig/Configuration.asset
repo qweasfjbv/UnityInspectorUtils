@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: Configuration
   m_EditorClassIdentifier: 
   Elements:
-  - Path: Assets/InspectorUtils/_Demo/CustomFolders/_1
-    ColorType: 0
-    IconType: 2
-    CustomFolderColor: {r: 1, g: 1, b: 1, a: 1}
   - Path: Assets/InspectorUtils/_Demo/CustomFolders/_2
     ColorType: 1
     IconType: 1
@@ -61,3 +57,7 @@ MonoBehaviour:
     ColorType: 11
     IconType: 0
     CustomFolderColor: {r: 0.6075471, g: 0.6075471, b: 0.6075471, a: 1}
+  - Path: Assets/InspectorUtils/_Demo/CustomFolders/_1
+    ColorType: 11
+    IconType: 2
+    CustomFolderColor: {r: 0.7830189, g: 0, b: 0, a: 1}

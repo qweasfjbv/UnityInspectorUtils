@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace IUtil._Demo
 {
+	[IUtil.IUtilable]
     public class DemoScript_Button : MonoBehaviour
 	{
 		public string Func1Param1;

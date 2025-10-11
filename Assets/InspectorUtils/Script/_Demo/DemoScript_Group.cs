@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace IUtil._Demo
 {
-    public class DemoScript_Group : MonoBehaviour
+	[IUtil.IUtilable]
+	public class DemoScript_Group : MonoBehaviour
 	{
 
 		[TabGroup("Main", "Tab1")]

@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace IUtil.Utils
 {
-    [CustomEditor(typeof(MonoBehaviour), true)]
+	[CustomEditor(typeof(MonoBehaviour), true)]
     public class MonoBehaviourEditor : Editor
     {
         #region Internal Classes 
@@ -47,12 +47,25 @@ namespace IUtil.Utils
         
         private TabGroupAttribute curTabAttr = null;
         private FoldoutGroupAttribute curFoldAttr = null;
+		private bool isTargetCustomInspectable;
 
-        #endregion
+		#endregion
 
-        public override void OnInspectorGUI()
+		private void OnEnable()
+		{
+			var targetType = target.GetType();
+			isTargetCustomInspectable = System.Attribute.IsDefined(targetType, typeof(IUtilableAttribute));
+		}
+
+		public override void OnInspectorGUI()
         {
-            serializedObject.Update();
+            if (!isTargetCustomInspectable)
+            {
+                DrawDefaultInspector();
+                return;
+            }
+
+			serializedObject.Update();
             CollectProperties();
             DrawProperties();
             DrawFunctionButton();
@@ -69,10 +82,10 @@ namespace IUtil.Utils
             curFoldAttr = null;
 		}
 
-        /// <summary>
-        /// Collect properties to draw
-        /// </summary>
-        private void CollectProperties()
+		/// <summary>
+		/// Collect properties to draw
+		/// </summary>
+		private void CollectProperties()
         {
             Init();
 

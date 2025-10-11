@@ -6,7 +6,6 @@ using IUtil.ProjectWindow;
 using IUtil.SO;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Rendering.FilterWindow;
 
 namespace IUtil.CustomEditor
 {
@@ -28,9 +27,7 @@ namespace IUtil.CustomEditor
         [MenuItem("Assets/IUtil/Customize Folder", false, 1000)]
         private static void OpenEditor()
         {
-            string guid = Selection.assetGUIDs[0];
-            string folderPath = AssetDatabase.GUIDToAssetPath(guid);
-
+            string folderPath = AssetDatabase.GUIDToAssetPath(Selection.assetGUIDs[0]);
             FolderCustomEditorWindow.Open(folderPath);
         }
     }
@@ -49,7 +46,7 @@ namespace IUtil.CustomEditor
 
             Vector2 size = new Vector2(400, 400);
             window.minSize = size;
-            window.maxSize = size;
+            window.maxSize = size + new Vector2(1, 1);
 
             window.Show();
         }
@@ -118,7 +115,7 @@ namespace IUtil.CustomEditor
 							if (Directory.Exists(draggedPath))
 							{
 								folderPath = draggedPath;
-								break;
+                                break;
 							}
 						}
 					}
@@ -134,8 +131,8 @@ namespace IUtil.CustomEditor
             int rows = Mathf.CeilToInt((float)count / iconsPerRow);
             int drawn = 0;
 
-            foreach (int y in Enumerable.Range(0, rows))
-            {
+            for (int y = 0; y < rows; y++) 
+            { 
                 EditorGUILayout.BeginHorizontal();
 				GUILayout.Space(20f);
 
