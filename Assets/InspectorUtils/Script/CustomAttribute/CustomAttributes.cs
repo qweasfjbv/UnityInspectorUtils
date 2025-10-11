@@ -3,22 +3,26 @@ using UnityEngine;
 
 namespace IUtil
 {
-    #region Grouping
 
-    /// <summary>
-    /// Attribute class for [TabGroup]
-    /// 
-    /// - Usage
-    ///		[TabGroup(GroupName, TabName, HeaderFontSize, HeaderColorType)]
-    ///		public float m_float1;
-    ///		public float m_float2;
-    ///		...
-    ///		
-    /// - Descript
-    ///		When a specific tab is selected, only the variables and functions included in that tab are displayed.
-    ///		It can contain [FoldoutGroup].
-    /// </summary>
-    [System.AttributeUsage(AttributeTargets.Field)]
+	[System.AttributeUsage(AttributeTargets.Class)]
+	public class IUtilableAttribute : System.Attribute { }
+
+	#region Grouping
+
+	/// <summary>
+	/// Attribute class for [TabGroup]
+	/// 
+	/// - Usage
+	///		[TabGroup(GroupName, TabName, HeaderFontSize, HeaderColorType)]
+	///		public float m_float1;
+	///		public float m_float2;
+	///		...
+	///		
+	/// - Descript
+	///		When a specific tab is selected, only the variables and functions included in that tab are displayed.
+	///		It can contain [FoldoutGroup].
+	/// </summary>
+	[System.AttributeUsage(AttributeTargets.Field)]
 	public class TabGroupAttribute : PropertyAttribute
 	{
 		public string GroupName { get; }
