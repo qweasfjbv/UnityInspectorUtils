@@ -301,7 +301,7 @@ namespace IUtil.Utils
 
             int tmpFontSize = 16;
 
-			GUIStyle labelStyle = EditorStyles.boldLabel;
+			GUIStyle labelStyle = new GUIStyle(EditorStyles.boldLabel);
 			labelStyle.alignment = TextAnchor.MiddleCenter;
 			labelStyle.fontSize = tmpFontSize;
             labelStyle.normal.textColor = IUtil.Utils.Constants.PALLETE[(int)IUtil.ColorType.White];
